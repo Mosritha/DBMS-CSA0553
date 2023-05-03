@@ -1,0 +1,87 @@
+mysql> select * from employee;
++------+--------+--------+---------+-------------+------------+
+| id   | name   | salary | adress  | father_name | experience |
++------+--------+--------+---------+-------------+------------+
+|  523 | santhi | 100000 | mumbai  | raghu       |          4 |
+|  524 | ramya  | 150000 | chennai | ramesh      |          3 |
+|  525 | swathi | 130000 | delhi   | suresh      |          5 |
+|  526 | prema  | 100000 | mysore  | ram         |          4 |
++------+--------+--------+---------+-------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> delete from employee where father_name='ram';
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from employee;
++------+--------+--------+---------+-------------+------------+
+| id   | name   | salary | adress  | father_name | experience |
++------+--------+--------+---------+-------------+------------+
+|  523 | santhi | 100000 | mumbai  | raghu       |          4 |
+|  524 | ramya  | 150000 | chennai | ramesh      |          3 |
+|  525 | swathi | 130000 | delhi   | suresh      |          5 |
++------+--------+--------+---------+-------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where experience='4';
++------+--------+--------+--------+-------------+------------+
+| id   | name   | salary | adress | father_name | experience |
++------+--------+--------+--------+-------------+------------+
+|  523 | santhi | 100000 | mumbai | raghu       |          4 |
++------+--------+--------+--------+-------------+------------+
+1 row in set (0.00 sec)
+
+mysql> alter table employee add dept varchar(15);
+Query OK, 3 rows affected (0.04 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> update employee set dept='developer' where name='santhi';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set dept='tester' where salary='150000';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set dept=developer' where adress='delhi';
+    '>
+    '> )
+    '> ;
+    '> '
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' where adress='delhi';
+
+)
+;
+'' at line 1
+mysql> update employee set dept='developer' where adress='delhi';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from employee;
++------+--------+--------+---------+-------------+------------+-----------+
+| id   | name   | salary | adress  | father_name | experience | dept      |
++------+--------+--------+---------+-------------+------------+-----------+
+|  523 | santhi | 100000 | mumbai  | raghu       |          4 | developer |
+|  524 | ramya  | 150000 | chennai | ramesh      |          3 | tester    |
+|  525 | swathi | 130000 | delhi   | suresh      |          5 | developer |
++------+--------+--------+---------+-------------+------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee name like's%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like's%'' at line 1
+mysql> select * from employee where name like 's%';
++------+--------+--------+--------+-------------+------------+-----------+
+| id   | name   | salary | adress | father_name | experience | dept      |
++------+--------+--------+--------+-------------+------------+-----------+
+|  523 | santhi | 100000 | mumbai | raghu       |          4 | developer |
+|  525 | swathi | 130000 | delhi  | suresh      |          5 | developer |
++------+--------+--------+--------+-------------+------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee where adress like 'c%';
++------+-------+--------+---------+-------------+------------+--------+
+| id   | name  | salary | adress  | father_name | experience | dept   |
++------+-------+--------+---------+-------------+------------+--------+
+|  524 | ramya | 150000 | chennai | ramesh      |          3 | tester |
++------+-------+--------+---------+-------------+------------+--------+
+1 row in set (0.00 sec)
