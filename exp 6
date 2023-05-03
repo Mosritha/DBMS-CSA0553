@@ -1,0 +1,60 @@
+mysql> select * from employee;
++------+--------+--------+---------+-------------+------------+-----------+
+| id   | name   | salary | adress  | father_name | experience | dept      |
++------+--------+--------+---------+-------------+------------+-----------+
+|  523 | santhi | 100000 | mumbai  | raghu       |          4 | developer |
+|  524 | ramya  | 150000 | chennai | ramesh      |          3 | tester    |
+|  525 | swathi | 130000 | delhi   | suresh      |          5 | developer |
++------+--------+--------+---------+-------------+------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where experience BETWEEN 3 and 5;
++------+--------+--------+---------+-------------+------------+-----------+
+| id   | name   | salary | adress  | father_name | experience | dept      |
++------+--------+--------+---------+-------------+------------+-----------+
+|  523 | santhi | 100000 | mumbai  | raghu       |          4 | developer |
+|  524 | ramya  | 150000 | chennai | ramesh      |          3 | tester    |
+|  525 | swathi | 130000 | delhi   | suresh      |          5 | developer |
++------+--------+--------+---------+-------------+------------+-----------+
+3 rows in set (0.00 sec)
+mysql> select * from employee where father_name IN('raghu');
++------+--------+--------+--------+-------------+------------+-----------+
+| id   | name   | salary | adress | father_name | experience | dept      |
++------+--------+--------+--------+-------------+------------+-----------+
+|  523 | santhi | 100000 | mumbai | raghu       |          4 | developer |
++------+--------+--------+--------+-------------+------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select sum(salary) from employee where dept='developer';
++-------------+
+| sum(salary) |
++-------------+
+|      230000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) as Average from employee;
++-------------+
+| Average     |
++-------------+
+| 126666.6667 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select min(salary) as Minimum from employee;
++---------+
+| Minimum |
++---------+
+|  100000 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary) as Maximum from employee;
++---------+
+| Maximum |
++---------+
+|  150000 |
++---------+
+1 row in set (0.00 sec)
+
+mysql>
