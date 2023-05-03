@@ -1,0 +1,74 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| city               |
+| mysql              |
+| performance_schema |
+| sse                |
+| sse2               |
+| student            |
+| test               |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use sse;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table faculty(facid int(4),name varchar(20),dept varchar(10),salary int(7));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc faculty;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| facid  | int(4)      | YES  |     | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| dept   | varchar(10) | YES  |     | NULL    |       |
+| salary | int(7)      | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> show tables
+    ->
+    -> show tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show tables' at line 3
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| faculty       |
++---------------+
+1 row in set (0.02 sec)
+
+mysql> desc faculty;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| facid  | int(4)      | YES  |     | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| dept   | varchar(10) | YES  |     | NULL    |       |
+| salary | int(7)      | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> insert into faculty  values(1,'gowthm','cse',100000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into faculty values(2,'seetha','ece',120000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from faculty;
++-------+--------+------+--------+
+| facid | name   | dept | salary |
++-------+--------+------+--------+
+|     1 | gowthm | cse  | 100000 |
+|     2 | seetha | ece  | 120000 |
++-------+--------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> drop table faculty;
+Query OK, 0 rows affected (0.01 sec)
