@@ -1,0 +1,70 @@
+mysql> select * from employee;
++------+--------+--------+---------+-------------+------------+-----------+
+| id   | name   | salary | adress  | father_name | experience | dept      |
++------+--------+--------+---------+-------------+------------+-----------+
+|  523 | santhi | 100000 | mumbai  | raghu       |          4 | developer |
+|  524 | ramya  | 150000 | chennai | ramesh      |          3 | tester    |
+|  525 | swathi | 130000 | delhi   | suresh      |          5 | developer |
++------+--------+--------+---------+-------------+------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> create view salary as select dept,salary from employee;
+Query OK, 0 rows affected (0.02 sec)
+mysql> select * from salary;
++-----------+--------+
+| dept      | salary |
++-----------+--------+
+| developer | 100000 |
+| tester    | 150000 |
+| developer | 130000 |
++-----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> create index dept on employee(dept);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show index from employee;
++----------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table    | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++----------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| employee |          1 | dept     |            1 | dept        | A         |           3 |     NULL | NULL   | YES  | BTREE      |         |               |
++----------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+1 row in set (0.00 sec)
+mysql> create table per(pid int NOT NULL AUTO_INCREMENT,name varchar(30),age int(3),PRIMARY KEY(pid));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc per;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| pid   | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(30) | YES  |     | NULL    |                |
+| age   | int(3)      | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.02 sec)
+mysql> alter table per AUTO_INCREMENT=100;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into per(name,age) values ("gowtham",30);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from per;
++-----+---------+------+
+| pid | name    | age  |
++-----+---------+------+
+| 100 | gowtham |   30 |
++-----+---------+------+
+1 row in set (0.00 sec)
+mysql> insert into per(name,age) values ("arun",40);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from per;
++-----+---------+------+
+| pid | name    | age  |
++-----+---------+------+
+| 100 | gowtham |   30 |
+| 101 | arun    |   40 |
++-----+---------+------+
+2 rows in set (0.01 sec)
