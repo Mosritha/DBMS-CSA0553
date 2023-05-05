@@ -1,0 +1,105 @@
+mysql> select * from employee;
++------+--------+--------+---------+-------------+------------+-----------+
+| id   | name   | salary | adress  | father_name | experience | dept      |
++------+--------+--------+---------+-------------+------------+-----------+
+|  523 | santhi | 100000 | mumbai  | raghu       |          4 | developer |
+|  524 | ramya  | 150000 | chennai | ramesh      |          3 | tester    |
+|  525 | swathi | 130000 | delhi   | suresh      |          5 | developer |
++------+--------+--------+---------+-------------+------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee1;
++--------+--------+
+| emplid | name   |
++--------+--------+
+|    523 | santhi |
+|    526 | prema  |
++--------+--------+
+2 rows in set (0.02 sec)
+
+mysql> alter table employee1 add father_name varchar(20);
+Query OK, 2 rows affected (0.04 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee1 add adress varchar(40);
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee1;
++--------+--------+-------------+--------+
+| emplid | name   | father_name | adress |
++--------+--------+-------------+--------+
+|    523 | santhi | NULL        | NULL   |
+|    526 | prema  | NULL        | NULL   |
++--------+--------+-------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> update employee1 set father_name='raghu' where emplid=523;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee1 set father_name='ramesh' where emplid=526;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee1 set adress='mumbai' where name='santhi';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee1 set adress='delhi' where name='prema';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee1;
++--------+--------+-------------+--------+
+| emplid | name   | father_name | adress |
++--------+--------+-------------+--------+
+|    523 | santhi | raghu       | mumbai |
+|    526 | prema  | ramesh      | delhi  |
++--------+--------+-------------+--------+
+2 rows in set (0.00 sec)
+mysql> alter table employee1 add father_adress varchar(20);
+Query OK, 2 rows affected (0.05 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> update employee1 set father_adress='guntur' where name='santhi';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+mysql> update employee1 set father_adress='ongole' where emplid=526;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee1;
++--------+--------+-------------+--------+---------------+
+| emplid | name   | father_name | adress | father_adress |
++--------+--------+-------------+--------+---------------+
+|    523 | santhi | raghu       | mumbai | guntur        |
+|    526 | prema  | ramesh      | delhi  | ongole        |
++--------+--------+-------------+--------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> select emplid,father_adress from employee1,employee where employee.father_name=employee1.father_name;
++--------+---------------+
+| emplid | father_adress |
++--------+---------------+
+|    523 | guntur        |
+|    526 | ongole        |
++--------+---------------+
+2 rows in set (0.00 sec)
+mysql> select salary,experience,dept from employee1 left outer join employee on employee1.father_name=employee.father_name;
++--------+------------+-----------+
+| salary | experience | dept      |
++--------+------------+-----------+
+| 100000 |          4 | developer |
+| 150000 |          3 | tester    |
++--------+------------+-----------+
+2 rows in set (0.00 sec)
+mysql> select salary,experience,dept from employee1 right outer join employee on employee1.father_name=employee.father_name;
++--------+------------+-----------+
+| salary | experience | dept      |
++--------+------------+-----------+
+| 100000 |          4 | developer |
+| 150000 |          3 | tester    |
+| 130000 |          5 | developer |
++--------+------------+-----------+
+3 rows in set (0.00 sec)
