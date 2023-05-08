@@ -1,0 +1,48 @@
+mysql> select * from employee;
++------+--------+--------+---------+-------------+------------+-----------+
+| id   | name   | salary | adress  | father_name | experience | dept      |
++------+--------+--------+---------+-------------+------------+-----------+
+|  523 | santhi | 100000 | mumbai  | raghu       |          4 | developer |
+|  524 | ramya  | 150000 | chennai | ramesh      |          3 | tester    |
+|  525 | swathi | 130000 | delhi   | suresh      |          5 | developer |
++------+--------+--------+---------+-------------+------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE employee_info()
+    -> BEGIN
+    -> select * from employee;
+    -> end;//
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CALL employee_info();
+    -> //
++------+--------+--------+---------+-------------+------------+-----------+
+| id   | name   | salary | adress  | father_name | experience | dept      |
++------+--------+--------+---------+-------------+------------+-----------+
+|  523 | santhi | 100000 | mumbai  | raghu       |          4 | developer |
+|  524 | ramya  | 150000 | chennai | ramesh      |          3 | tester    |
+|  525 | swathi | 130000 | delhi   | suresh      |          5 | developer |
++------+--------+--------+---------+-------------+------------+-----------+
+3 rows in set (0.00 sec)
+Query OK, 0 rows affected (0.03 sec)
+mysql> CREATE PROCEDURE while_loop()
+    -> BEGIN
+    -> DECLARE num INT default 1;
+    -> DECLARE res Varchar(50) default'';
+    -> WHILE num < 78215 DO
+    -> SET res = CONCAT(res,num,',');
+    -> SET num = num*5;
+    -> END While;
+    -> SELECT res;
+    -> END //
+mysql> call while_loop()
+    -> //
++----------------------------+
+| res                        |
++----------------------------+
+| 1,5,25,125,625,3125,15625, |
++----------------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.02 sec)
