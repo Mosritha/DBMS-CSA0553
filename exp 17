@@ -1,0 +1,47 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| city               |
+| mysql              |
+| performance_schema |
+| s                  |
+| sse                |
+| sse2               |
+| student            |
+| test               |
++--------------------+
+9 rows in set (0.00 sec)
+
+mysql> use student;
+Database changed
+mysql> select * from employee;
++------+--------+--------+---------+-------------+------------+-----------+
+| id   | name   | salary | adress  | father_name | experience | dept      |
++------+--------+--------+---------+-------------+------------+-----------+
+|  523 | santhi | 100000 | mumbai  | raghu       |          4 | developer |
+|  524 | ramya  | 150000 | chennai | ramesh      |          3 | tester    |
+|  525 | swathi | 130000 | delhi   | suresh      |          5 | developer |
++------+--------+--------+---------+-------------+------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select repeat(name,2) from employee;
++----------------+
+| repeat(name,2) |
++----------------+
+| santhisanthi   |
+| ramyaramya     |
+| swathiswathi   |
++----------------+
+3 rows in set (0.02 sec)
+
+mysql> select repeat(dept,2) from employee;
++--------------------+
+| repeat(dept,2)     |
++--------------------+
+| developerdeveloper |
+| developerdeveloper |
+| testertester       |
++--------------------+
+3 rows in set (0.00 sec)
