@@ -1,0 +1,107 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| city               |
+| mysql              |
+| performance_schema |
+| s                  |
+| sse                |
+| sse2               |
+| student            |
+| test               |
++--------------------+
+9 rows in set (0.01 sec)
+
+mysql> use student;
+Database changed
+mysql> select customer(40000);
++-----------------+
+| customer(40000) |
++-----------------+
+| GOLD            |
++-----------------+
+1 row in set (0.01 sec)
+
+mysql> select customer(50000);
++-----------------+
+| customer(50000) |
++-----------------+
+| GOLD            |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select customer(1000);
++----------------+
+| customer(1000) |
++----------------+
+| BRONZE         |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> DELIMITER $$
+mysql> CREATE PROCEDURE find_fact(IN n INT)
+    -> BEGIN
+    -> SET @@GLOBAL.MAX_sp_recursion_depth =255;
+    -> SET @@SESSION.max_sp_recursion_depth=255;
+    -> CALL factorial(n,@fact);
+    -> SELECT @fact;
+    -> end
+    -> $$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DELIMITER $$
+mysql> CREATE PROCEDURE factorial(IN n INT,OUT fact INT)
+    -> BEGIN
+    -> IF n=1 THEN
+    ->  SET fact:=1;
+    -> else
+    ->  CALL factorial(n-1,fact);
+    ->  SET fact:=n*fact;
+    -> end IF;
+    -> end
+    -> $$
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> call find_fact(5)
+    -> $$
++-------+
+| @fact |
++-------+
+|   120 |
++-------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DELIMITER //
+mysql> CREATE FUNCTION find_sum(A INT,B INT)
+    -> RETURNS INT
+    -> DETERMINISTIC
+    -> BEGIN
+    -> DECLARE SUM INT;
+    -> SET SUM=A+B;
+    -> RETURN SUM;
+    -> END//
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT find_sum(4,7);
+    -> //
++---------------+
+| find_sum(4,7) |
++---------------+
+|            11 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select find_sum(-2,-9);
+    -> //
++-----------------+
+| find_sum(-2,-9) |
++-----------------+
+|             -11 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql>
