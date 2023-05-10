@@ -1,0 +1,57 @@
+mysql> select * from employee;
++------+--------+--------+---------+-------------+------------+-----------+
+| id   | name   | salary | adress  | father_name | experience | dept      |
++------+--------+--------+---------+-------------+------------+-----------+
+|  523 | santhi | 100000 | mumbai  | raghu       |          4 | developer |
+|  524 | ramya  | 150000 | chennai | ramesh      |          3 | tester    |
+|  525 | swathi | 130000 | delhi   | suresh      |          5 | developer |
++------+--------+--------+---------+-------------+------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select @@autocommit;
++--------------+
+| @@autocommit |
++--------------+
+|            1 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> insert into employee values(526,'durga',170000,'hyderabad','rushi',3,'manager');
+Query OK, 1 row affected (0.00 sec)
+mysql> set autocommit=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select @@autocommit;
++--------------+
+| @@autocommit |
++--------------+
+|            0 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> delete from salary where salary=170000;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from employee;
++------+--------+--------+---------+-------------+------------+-----------+
+| id   | name   | salary | adress  | father_name | experience | dept      |
++------+--------+--------+---------+-------------+------------+-----------+
+|  523 | santhi | 100000 | mumbai  | raghu       |          4 | developer |
+|  524 | ramya  | 150000 | chennai | ramesh      |          3 | tester    |
+|  525 | swathi | 130000 | delhi   | suresh      |          5 | developer |
++------+--------+--------+---------+-------------+------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from employee;
++------+--------+--------+-----------+-------------+------------+-----------+
+| id   | name   | salary | adress    | father_name | experience | dept      |
++------+--------+--------+-----------+-------------+------------+-----------+
+|  523 | santhi | 100000 | mumbai    | raghu       |          4 | developer |
+|  524 | ramya  | 150000 | chennai   | ramesh      |          3 | tester    |
+|  525 | swathi | 130000 | delhi     | suresh      |          5 | developer |
+|  526 | durga  | 170000 | hyderabad | rushi       |          3 | manager   |
++------+--------+--------+-----------+-------------+------------+-----------+
+4 rows in set (0.00 sec)
